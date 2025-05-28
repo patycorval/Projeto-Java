@@ -141,7 +141,7 @@ public class AdminController {
 
             session.setAttribute(ATRIBUTO_ADMIN, true); 
 
-            return "redirect:/admin/dashboard"; 
+            return "redirect:/admin/principal"; 
 
         } else { 
 
@@ -153,7 +153,7 @@ public class AdminController {
 
     } 
 
-    @GetMapping("/dashboard") 
+    @GetMapping("/principal") 
 
     public String dashboard(HttpSession session) { 
 
@@ -161,7 +161,7 @@ public class AdminController {
 
         if (Boolean.TRUE.equals(autenticado)) { 
 
-            return "dashboard"; 
+            return "principal"; 
 
         } else { 
 

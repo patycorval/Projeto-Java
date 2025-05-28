@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" th:href="@{css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
     <!-- <script th:src="@{js/projeto.js}"></script> -->
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
@@ -13,7 +13,7 @@
 <body>
     <header>
         <div class="header">
-            <a th:href="@{/}"><img class="logo-fatec" th:src="@{img/logo-fatec-branco.png}" alt="Logo Fatec"> </a>
+            <a th:href="@{/}"><img class="logo-fatec" th:src="@{/img/logo-fatec-branco.png}" alt="Logo Fatec"> </a>
                 <ul class="links">
                     <li> <a th:href="@{/}" th:classappend="${activePage == 'principal'} ? 'active' : ''">Reservar</a></li>
                     <li><a th:href="@{/listagem}" th:classappend="${activePage == 'listagem'} ? 'active' : ''">Minhas Reservas</a></li>
@@ -29,7 +29,7 @@
 
         <section class="andar3"> 
             <div class="div-reservar">
-                <img th:src="@{img/sala5.jpeg}" alt=" Laboratório 3.01">
+                <img th:src="@{/img/sala5.jpeg}" alt=" Laboratório 3.01">
                 <h3> Sala 3.01</h3>
                 <p> Capacidade: 50 alunos </p>
                 <p> Quantidade de máquinas: 20</p>
@@ -41,7 +41,7 @@
             </div>
 
             <div class="div-reservar">
-                <img th:src="@{img/sala5.jpeg}" alt=" Laboratório 3.02">
+                <img th:src="@{/img/sala5.jpeg}" alt=" Laboratório 3.02">
                 <h3> Sala 3.02</h3>
                 <p> Capacidade: 40 alunos</p>
                 <p> Quantidade de máquinas: 15</p>
@@ -53,7 +53,7 @@
             </div>
 
             <div class="div-reservar">
-                <img th:src="@{img/sala5.jpeg}" alt=" Laboratório 3.03">
+                <img th:src="@{/img/sala5.jpeg}" alt=" Laboratório 3.03">
                 <h3> Sala 3.03</h3>
                 <p> Capacidade: 45 alunos</p>
                 <p> Quantidade de máquinas: 25</p>
@@ -65,7 +65,7 @@
             </div>
 
             <div class="div-reservar">
-                <img th:src="@{img/sala5.jpeg}" alt=" Laboratório 3.04">
+                <img th:src="@{/img/sala5.jpeg}" alt=" Laboratório 3.04">
                 <h3> Sala 3.04</h3>
                 <p> Capacidade: 60 alunos</p>
                 <p> Quantidade de máquinas: 30</p>
@@ -77,7 +77,7 @@
             </div>
 
             <div class="div-reservar">
-                <img th:src="@{img/sala5.jpeg}" alt=" Laboratório 3.05">
+                <img th:src="@{/img/sala5.jpeg}" alt=" Laboratório 3.05">
                 <h3> Sala 3.05</h3>
                 <p> Capacidade: 60 alunos</p>
                 <p> Quantidade de máquinas: 30</p>
@@ -96,7 +96,7 @@
 
         <section class="andar5"> 
             <div class="div-reservar">
-                <img th:src="@{img/sala5.jpeg}" alt=" Laboratório 501">
+                <img th:src="@{/img/sala5.jpeg}" alt=" Laboratório 501">
                 <h3> Sala 501</h3>
                 <p> Capacidade: 50 alunos</p>
                 <p> Quantidade de máquinas: 20</p>
@@ -108,7 +108,7 @@
             </div>
 
             <div class="div-reservar">
-                <img th:src="@{img/sala5.jpeg}" alt=" Laboratório 502">
+                <img th:src="@{/img/sala5.jpeg}" alt=" Laboratório 502">
                 <h3> Sala 502</h3>
                 <p> Capacidade: 40 alunos</p>
                 <p> Quantidade de máquinas: 15</p>
@@ -120,7 +120,7 @@
             </div>
 
             <div class="div-reservar">
-                <img th:src="@{img/sala5.jpeg}" alt=" Laboratório 503">
+                <img th:src="@{/img/sala5.jpeg}" alt=" Laboratório 503">
                 <h3> Sala 503</h3>
                 <p> Capacidade: 45 alunos</p>
                 <p> Quantidade de máquinas: 25</p>
@@ -132,7 +132,7 @@
             </div>
 
             <div class="div-reservar">
-                <img th:src="@{img/sala5.jpeg}" alt=" Laboratório 504">
+                <img th:src="@{/img/sala5.jpeg}" alt=" Laboratório 504">
                 <h3> Sala 504</h3>
                 <p> Capacidade: 60 alunos</p>
                 <p> Quantidade de máquinas: 30</p>
@@ -144,7 +144,7 @@
             </div>
 
             <div class="div-reservar">
-                <img th:src="@{img/sala5.jpeg}" alt=" Laboratório 505">
+                <img th:src="@{/img/sala5.jpeg}" alt=" Laboratório 505">
                 <h3> Sala 505</h3>
                 <p> Capacidade: 60 alunos</p>
                 <p> Quantidade de máquinas: 30</p>
