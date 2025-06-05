@@ -1,31 +1,27 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Login do Administrador</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}"> <!-- ajuste o caminho se necessário -->
+</head>
+<body>
+    <div class="login-admin">
+        <h1>Login do Admin</h1>
 
-<html xmlns:th="http://www.thymeleaf.org"> 
+        <form method="post" th:action="@{/admin/login}">
+            <label >Usuário:
+                <input type="text" name="usuario" id="input-tamanho1" required/>
+            </label>
 
-<head> 
+            <label>Senha:
+                <input type="password" name="senha" id="input-tamanho2" required/>
+            </label>
 
-    <title>Login do Administrador</title> 
+            <button type="submit">Entrar</button>
+        </form>
 
-</head> 
-
-<body> 
-
-    <h1>Login do Admin</h1> 
-
-    <form method="post" th:action="@{/admin/login}"> 
-
-        <label>Usuário: <input type="text" name="usuario" /></label><br /> 
-
-        <label>Senha: <input type="password" name="senha" /></label><br /> 
-
-        <button type="submit">Entrar</button> 
-
-    </form> 
-
-    <p th:if="${erro}" th:text="${erro}" style="color:red;"></p> 
-
-</body> 
-
-</html> 
-
- 
+        <p th:if="${erro}" th:text="${erro}" style="color:red;"></p>
+    </div>
+</body>
+</html>
