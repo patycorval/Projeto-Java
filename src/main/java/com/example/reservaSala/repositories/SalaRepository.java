@@ -1,4 +1,4 @@
-package com.example.reservaSala.repository;
+package com.example.reservaSala.repositories;
 
 import com.example.reservaSala.model.Sala;
 import com.example.reservaSala.model.enums.Recurso;
