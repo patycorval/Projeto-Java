@@ -2,53 +2,30 @@ package com.example.reservaSala.model;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
+@Entity
 public class Reserva {
 
-    private int id;
-    private String numero, nome;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private String numero;
+    private String nome;
     private LocalDate data;
-
-    // @DateTimeFormat: Diz ao Spring que a variável data deve ser tratada com um
-    // formato específico de data. Garante que o Spring saiba como fazer a conversão
-    // entre o formato da data enviada e o tipo Java(LocalDate)
-    // pattern = "yyyy-MM-dd": Especifica o padrão que o Spring deve usar para
-    // entender a data no formato YYYY-MM-DD. Este é o formato que o HTML <input
-    // type="date"> envia por padrão.
-
     private LocalTime hora;
     private int duracao;
 
-    public Reserva() {
-
-    }
-
-    public Reserva(int id, String numero, String nome, LocalDate data, LocalTime hora, int duracao) {
-        this.id = id;
-        this.numero = numero;
-        this.nome = nome;
-        this.data = data;
-        this.hora = hora;
-        this.duracao = duracao;
-    }
-
-    public Reserva(String numero, String nome, LocalDate data, LocalTime hora, int duracao) {
-        this.numero = numero;
-        this.nome = nome;
-        this.data = data;
-        this.hora = hora;
-        this.duracao = duracao;
-    }
-
-    public int getId() {
+    // Getters e Setters
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -91,5 +68,4 @@ public class Reserva {
     public void setDuracao(int duracao) {
         this.duracao = duracao;
     }
-
 }

@@ -4,6 +4,86 @@
     font-style: normal;
 }
 
+/* PÁGINA DE LOGIN */
+
+.login-admin {
+    width: 500px; 
+    padding: 40px; 
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Estilo dos campos do formulário */
+
+.login-admin {
+    width: 400px;
+    margin: 0 auto;
+    margin-top: 10vh;
+    padding: 30px;
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.login-admin h1 {
+    color: #6b0000;
+    margin-bottom: 30px;
+}
+
+.login-admin form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.login-admin label {
+    width: 100%;
+    margin-bottom: 20px;
+    text-align: left;
+    font-weight: bold;
+}
+
+.login-admin input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    background-color: #eaf1ff;
+}
+
+.login-admin button {
+    width: 150px;
+    padding: 10px;
+    border-radius: 6px;
+    background-color: #6b0000;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    transition: transform 0.2s;
+    margin-top: 15px;
+}
+
+.login-admin button:hover {
+    transform: scale(1.05);
+}
+
+
+#input-tamanho1{
+    width: 95%;
+}
+
+#input-tamanho2{
+    width: 95%;
+}
+
 /* PAGINA PRINCIPAL*/
 
 img{
