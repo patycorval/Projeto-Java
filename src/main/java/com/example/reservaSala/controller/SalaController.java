@@ -10,7 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Arrays;
 import java.util.List;
 
 @Controller
@@ -20,7 +19,7 @@ public class SalaController {
     @Autowired
     private SalaService salaService;
 
-    // ✅ Listar todas as salas (inclusive inativas se quiser)
+    // Listar todas as salas (inclusive inativas se quiser)
     @GetMapping
     public String listarSalas(Model model, HttpSession session) {
         if (!Boolean.TRUE.equals(session.getAttribute("isAdmin"))) {
@@ -32,7 +31,7 @@ public class SalaController {
         return "salas/listagem";
     }
 
-    // ✅ Formulário para adicionar nova sala
+    // Formulário para adicionar nova sala
     @GetMapping("/nova")
     public String exibirFormularioNova(Model model, HttpSession session) {
         if (!Boolean.TRUE.equals(session.getAttribute("isAdmin"))) {
@@ -45,7 +44,7 @@ public class SalaController {
         return "salas/formulario";
     }
 
-    // ✅ Salvar nova sala
+    // Salvar nova sala
     @PostMapping("/salvar")
     public String salvarSala(@ModelAttribute Sala sala, HttpSession session) {
         if (!Boolean.TRUE.equals(session.getAttribute("isAdmin"))) {
@@ -56,7 +55,7 @@ public class SalaController {
         return "redirect:/salas";
     }
 
-    // ✅ Editar sala existente
+    // Editar sala existente
     @GetMapping("/editar/{id}")
     public String exibirFormularioEdicao(@PathVariable Long id, Model model, HttpSession session) {
         if (!Boolean.TRUE.equals(session.getAttribute("isAdmin"))) {
@@ -74,7 +73,7 @@ public class SalaController {
         return "salas/formulario";
     }
 
-    // ✅ Desativar sala
+    // Desativar sala
     @PostMapping("/desativar/{id}")
     public String desativarSala(@PathVariable Long id, HttpSession session) {
         if (!Boolean.TRUE.equals(session.getAttribute("isAdmin"))) {
