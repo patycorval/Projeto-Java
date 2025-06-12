@@ -47,9 +47,15 @@ public class ReservaController {
             return "redirect:/admin/login";
         }
 
-        reservaService.salvar(reserva);
-        model.addAttribute("reserva", reserva);
-        return "sucesso";
+        try {
+            reservaService.salvar(reserva);
+            model.addAttribute("reserva", reserva);
+            return "sucesso";
+        } catch (IllegalArgumentException e) {
+            model.addAttribute("erro", e.getMessage());
+            model.addAttribute("reserva", reserva);
+            return "reservar";
+        }
     }
 
     // Listagem de reservas (restrito a admin)
@@ -91,10 +97,13 @@ public class ReservaController {
         Reserva reserva = optionalReserva.get();
         model.addAttribute("reserva", reserva);
         return "atualizar";
+
     }
 
     @PostMapping("/reservas/editar/{id}")
-    public String atualizarReserva(@PathVariable Long id, @ModelAttribute Reserva reservaAtualizada,
+    public String atualizarReserva(@PathVariable Long id,
+            @ModelAttribute Reserva reservaAtualizada,
+            Model model,
             HttpSession session) {
         Boolean autenticado = (Boolean) session.getAttribute(AdminController.ATRIBUTO_ADMIN);
         if (!Boolean.TRUE.equals(autenticado)) {
@@ -107,13 +116,20 @@ public class ReservaController {
         }
 
         Reserva reservaExistente = optionalReserva.get();
+
         reservaExistente.setNome(reservaAtualizada.getNome());
         reservaExistente.setData(reservaAtualizada.getData());
         reservaExistente.setHora(reservaAtualizada.getHora());
         reservaExistente.setDuracao(reservaAtualizada.getDuracao());
-        // O número da sala continua o mesmo
 
-        reservaService.salvar(reservaExistente);
+        try {
+            reservaService.atualizar(reservaExistente);
+        } catch (IllegalArgumentException e) {
+            model.addAttribute("reserva", reservaExistente);
+            model.addAttribute("erro", e.getMessage());
+            return "atualizar";
+        }
+
         return "redirect:/listagem";
     }
 
