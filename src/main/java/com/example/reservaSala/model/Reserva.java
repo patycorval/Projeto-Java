@@ -2,6 +2,9 @@ package com.example.reservaSala.model;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.GeneratedValue;
@@ -16,6 +19,8 @@ public class Reserva {
 
     private String numero;
     private String nome;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate data;
     private LocalTime hora;
     private int duracao;

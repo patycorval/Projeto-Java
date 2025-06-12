@@ -14,23 +14,23 @@ public class SalaService {
     @Autowired
     private SalaRepository salaRepository;
 
-    // ✅ Listar todas as salas
+    // Listar todas as salas
     public List<Sala> listarTodas() {
         return salaRepository.findAll();
     }
 
-    // ✅ Buscar por ID
+    // Buscar por ID
     public Sala buscarPorId(Long id) {
         Optional<Sala> optional = salaRepository.findById(id);
         return optional.orElse(null);
     }
 
-    // ✅ Criar ou atualizar sala
+    // Criar ou atualizar sala
     public Sala salvar(Sala sala) {
         return salaRepository.save(sala);
     }
 
-    // ✅ Desativar sala
+    // Desativar sala
     public void desativarSala(Long id) {
         Sala sala = buscarPorId(id);
         if (sala != null) {
