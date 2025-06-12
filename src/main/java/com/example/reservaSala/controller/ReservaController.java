@@ -8,6 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 @Controller
 public class ReservaController {
 
@@ -71,6 +73,47 @@ public class ReservaController {
         }
 
         reservaService.deletar(id);
+        return "redirect:/listagem";
+    }
+
+    @GetMapping("/reservas/editar/{id}")
+    public String exibirFormularioEdicao(@PathVariable Long id, Model model, HttpSession session) {
+        Boolean autenticado = (Boolean) session.getAttribute(AdminController.ATRIBUTO_ADMIN);
+        if (!Boolean.TRUE.equals(autenticado)) {
+            return "redirect:/admin/login";
+        }
+
+        Optional<Reserva> optionalReserva = reservaService.buscarPorId(id);
+        if (optionalReserva.isEmpty()) {
+            return "redirect:/listagem";
+        }
+
+        Reserva reserva = optionalReserva.get();
+        model.addAttribute("reserva", reserva);
+        return "atualizar";
+    }
+
+    @PostMapping("/reservas/editar/{id}")
+    public String atualizarReserva(@PathVariable Long id, @ModelAttribute Reserva reservaAtualizada,
+            HttpSession session) {
+        Boolean autenticado = (Boolean) session.getAttribute(AdminController.ATRIBUTO_ADMIN);
+        if (!Boolean.TRUE.equals(autenticado)) {
+            return "redirect:/admin/login";
+        }
+
+        Optional<Reserva> optionalReserva = reservaService.buscarPorId(id);
+        if (optionalReserva.isEmpty()) {
+            return "redirect:/listagem";
+        }
+
+        Reserva reservaExistente = optionalReserva.get();
+        reservaExistente.setNome(reservaAtualizada.getNome());
+        reservaExistente.setData(reservaAtualizada.getData());
+        reservaExistente.setHora(reservaAtualizada.getHora());
+        reservaExistente.setDuracao(reservaAtualizada.getDuracao());
+        // O número da sala continua o mesmo
+
+        reservaService.salvar(reservaExistente);
         return "redirect:/listagem";
     }
 

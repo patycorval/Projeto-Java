@@ -7,39 +7,23 @@
 </head>
 <body>
     <div class="login-admin">
-        <h1>Login do Admin</h1>
 
-        <form method="post" th:action="@{/admin/login}">
-            <label >Usuário:
-                <input type="text" name="usuario" id="input-tamanho1" required/>
-            </label>
+        <h1>Login do Admin</h1> 
 
-            <label>Senha:
-                <input type="password" name="senha" id="input-tamanho2" required/>
-            </label>
+        <form method="post" th:action="@{/admin/login}"> 
 
-            <button type="submit">Entrar</button>
-        </form>
+            <label>Usuário: <input type="text" name="usuario" /></label><br /> 
 
-</head> 
+            <label>Senha: <input type="password" name="senha" /></label><br /> 
 
-<body> 
+            <button type="submit">Entrar</button> 
 
-    <h1>Login do Admin</h1> 
+        </form> 
 
-    <form method="post" th:action="@{/admin/login}"> 
-
-        <label>Usuário: <input type="text" name="usuario" /></label><br /> 
-
-        <label>Senha: <input type="password" name="senha" /></label><br /> 
-
-        <button type="submit">Entrar</button> 
-
-    </form> 
-
-    <p th:if="${erro}" th:text="${erro}" style="color:red;"></p> 
-    
-     <p>Não tem cadastro? <a th:href="@{/admin/cadastro}">Cadastre-se aqui</a></p>
+        <p th:if="${erro}" th:text="${erro}" style="color:red;"></p> 
+        
+        <p>Não tem cadastro? <a th:href="@{/admin/cadastro}">Cadastre-se aqui</a></p>
+    </div>
 
 </body> 
 

@@ -43,8 +43,8 @@
                     <td th:text="${reserva.hora}"></td>
                     <td th:text="${reserva.duracao} + ' hora(s)'"></td>
                     <td>
-                        <form th:action="@{'/atualizar/' + ${reserva.id}}" method="get">
-                            <button type="submit" id="atualizar"> Atualizar </button>
+                        <form th:action="@{'/reservas/editar/' + ${reserva.id}}" method="get">
+                            <button type="submit" id="atualizar">Atualizar</button>
                         </form>
                         <form th:action="@{'/deletar/' + ${reserva.id}}" method="post" class="btn-apagar">
                             <button type="submit" id="apagar"> Cancelar reserva </button>

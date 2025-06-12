@@ -23,7 +23,9 @@
     </header>
     <h1>Sistema de Reserva</h1>
 
-    <form th:action="@{'/atualizar/' + ${id}}" method="post" th:object="${reserva}" class="form">
+    <form th:action="@{'/reservas/editar/' + ${id}}" method="post" th:object="${reserva}" class="form">
+         <input type="hidden" th:field="*{id}" />
+        
         <!-- Número da Sala -->
         <label for="numero">Número da Sala:</label>
         <input type="text" id="numero" name="numero" th:field="*{numero}" readonly />
