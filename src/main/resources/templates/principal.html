@@ -1,10 +1,10 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="pt-br"  xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" th:href="@{/css/style.css}">
-    <!-- <script th:src="@{js/projeto.js}"></script> -->
+    <script th:src="@{js/projeto.js}"></script> 
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
     </style>
@@ -157,6 +157,69 @@
 
         </section>
     </main>
+
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <title>Salas Disponíveis</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+        
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .card {
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 16px;
+            width: 280px;
+            background-color: #f5f5f5;
+        }
+        .card h3 {
+            margin-top: 0;
+        }
+        .recursos {
+            margin-top: 10px;
+        }
+        .recursos span {
+            background-color: #e0e0e0;
+            padding: 4px 8px;
+            margin: 2px;
+            border-radius: 4px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Salas Disponíveis</h1>
+
+<div class="container">
+    <div class="card" th:each="sala : ${salas}">
+        <h3 th:text="'Sala ' + ${sala.numero}"></h3>
+        <p><strong>Andar:</strong> <span th:text="${sala.localizacao}"></span></p>
+        <p><strong>Capacidade:</strong> <span th:text="${sala.capacidade} + ' alunos'"></span></p>
+        <p><strong>Tipo:</strong> <span th:text="${sala.tipo}"></span></p>
+        <div class="recursos">
+            <strong>Recursos:</strong>
+            <div th:each="r : ${sala.recursos}">
+                <span th:text="${r}"></span>
+            </div>
+        </div>
+    </div>
+</div>
 
 </body>
 </html>

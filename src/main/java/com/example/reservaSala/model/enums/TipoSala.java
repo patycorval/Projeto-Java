@@ -1,6 +1,6 @@
 package com.example.reservaSala.model.enums;
 
 public enum TipoSala {
-    LABORATÓRIO,
+    LABORATORIO,
     SALA_AULA
 }
