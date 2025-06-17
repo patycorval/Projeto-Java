@@ -1,6 +1,9 @@
 package com.example.reservaSala.controller;
 
-import jakarta.servlet.http.HttpSession;
+import com.example.reservaSala.model.Admin;
+import com.example.reservaSala.service.AdminService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -9,59 +12,48 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/admin")
 public class AdminController {
 
-    public static final String ATRIBUTO_ADMIN = "isAdmin";
+    @Autowired
+    private AdminService adminService;
 
+    @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
+
+    // Exibir tela de login (o Spring Security que vai processar o login automaticamente)
     @GetMapping("/login")
     public String exibirLogin() {
         return "login";
     }
 
-    @PostMapping("/login")
-    public String processarLogin(@RequestParam String usuario,
-            @RequestParam String senha,
-            HttpSession session,
-            Model model) {
-        if ("admin".equals(usuario) && "123".equals(senha)) {
-            session.setAttribute(ATRIBUTO_ADMIN, true);
-            return "redirect:/admin/principal";
-        } else {
-            model.addAttribute("erro", "Usuário ou senha inválidos.");
-            return "login";
-        }
-    }
-
+    // Exibir tela de cadastro
     @GetMapping("/cadastro")
     public String exibirCadastro() {
         return "cadastro";
     }
 
+    // Processar cadastro de novo admin
     @PostMapping("/cadastro")
-    public String processarCadastro(@RequestParam String nome,
-            @RequestParam String email,
-            @RequestParam String senha,
-            Model model) {
-        // logica pra salvar o usuario aqui
-        model.addAttribute("mensagem", "Usuário cadastrado com sucesso!");
+    public String processarCadastro(@RequestParam String usuario,
+                                    @RequestParam String senha,
+                                    Model model) {
+        // Criptografar a senha antes de salvar
+        String senhaCriptografada = passwordEncoder.encode(senha);
 
+        Admin novoAdmin = new Admin();
+        novoAdmin.setUsuario(usuario);
+        novoAdmin.setSenha(senhaCriptografada);
+
+        adminService.salvar(novoAdmin);
+
+        model.addAttribute("mensagem", "Admin cadastrado com sucesso!");
         return "redirect:/admin/login";
     }
 
+    // Página principal do admin (acesso só pra ROLE_ADMIN)
     @GetMapping("/principal")
-    public String principal(HttpSession session, Model model) {
-        Boolean autenticado = (Boolean) session.getAttribute(ATRIBUTO_ADMIN);
-
-        if (Boolean.TRUE.equals(autenticado)) {
-            model.addAttribute("activePage", "principal");
-            model.addAttribute("usuario", "admin");
-            return "principal";
-        } else {
-            return "redirect:/admin/login";
-        }
+    public String principal(Model model) {
+        model.addAttribute("usuario", "admin");  // Só pra exibir no HTML se quiser
+        model.addAttribute("activePage", "principal");
+        return "principal";
     }
 
-    @GetMapping("/logout")
-    public String logout(HttpSession session) {
-        session.invalidate();
-        return "redirect:/admin/login";
-    }
 }
