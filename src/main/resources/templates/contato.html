@@ -13,12 +13,16 @@
 
     <header>
         <div class="header">
-            <a th:href="@{/admin/principal}"><img class="logo-fatec" th:src="@{img/logo-fatec-branco.png}" alt="Logo Fatec"> </a>
+            <a th:href="@{/admin/principal}"><img class="logo-fatec" th:src="@{/img/logo-fatec-branco.png}" alt="Logo Fatec"> </a>
                 <ul class="links">
-                    <li> <a th:href="@{/admin/principal}" th:classappend="${activePage == 'principal'} ? 'active' : ''"> Reservar </a></li>
-                    <li><a th:href="@{/listagem}" th:classappend="${activePage == 'listagem'} ? 'active' : ''" >Minhas Reservas</a></li>
-                    <li><a th:href="@{/contato}" th:classappend="${activePage == 'contato'} ? 'active' : ''" >Contato</a></li>
+                    <li> <a th:href="@{/admin/principal}" th:classappend="${activePage == 'principal'} ? 'active' : ''">Reservar</a></li>
+                    <li><a th:href="@{/listagem}" th:classappend="${activePage == 'listagem'} ? 'active' : ''">Minhas Reservas</a></li>
+                    <li><a th:href="@{/contato}" th:classappend="${activePage == 'contato'} ? 'active' : ''">Contato</a></li>
                 </ul>
+            <form th:action="@{/logout}" method="post" class="logout-form">
+                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+                <button type="submit" class="logout-button">Logout</button>
+            </form>
         </div>
     </header>
     <section class="contato">
