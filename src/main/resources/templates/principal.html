@@ -37,7 +37,7 @@
                 <p th:text="'Capacidade: ' + ${sala.capacidade} + ' alunos'">Capacidade</p>
                 <p th:text="'Possui televisão? ' + ${sala.recursos.contains(T(com.example.reservaSala.model.enums.Recurso).TELEVISOR) ? 'Sim' : 'Não'}">TV</p>
                 <p th:text="'Possui projetor? ' + ${sala.recursos.contains(T(com.example.reservaSala.model.enums.Recurso).PROJETOR) ? 'Sim' : 'Não'}">Projetor</p>
-                <p th:text="'Quantidade de máquinas: ' + ${sala.recursos.contains(T(com.example.reservaSala.model.enums.Recurso).COMPUTADORES) ? '20' : '0'}">Máquinas</p>
+                <p th:text="'Quantidade de máquinas: ' + ${sala.qtdComputadores}">Máquinas</p>
                 <a th:href="@{'/reservar?numero=' + ${sala.numero}}">
                     <button class="btn">Reservar</button>
                 </a>
@@ -52,7 +52,7 @@
                 <p th:text="'Capacidade: ' + ${sala.capacidade} + ' alunos'">Capacidade</p>
                 <p th:text="'Possui televisão? ' + ${sala.recursos.contains(T(com.example.reservaSala.model.enums.Recurso).TELEVISOR) ? 'Sim' : 'Não'}">TV</p>
                 <p th:text="'Possui projetor? ' + ${sala.recursos.contains(T(com.example.reservaSala.model.enums.Recurso).PROJETOR) ? 'Sim' : 'Não'}">Projetor</p>
-                <p th:text="'Quantidade de máquinas: ' + ${sala.recursos.contains(T(com.example.reservaSala.model.enums.Recurso).COMPUTADORES) ? '20' : '0'}">Máquinas</p>
+                <p th:text="'Quantidade de máquinas: ' + ${sala.qtdComputadores}">Máquinas</p>
                 <a th:href="@{'/reservar?numero=' + ${sala.numero}}">
                     <button class="btn">Reservar</button>
                 </a>
