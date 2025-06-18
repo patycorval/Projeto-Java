@@ -1,7 +1,10 @@
 package com.example.reservaSala.controller;
 
+import java.util.List;
 import com.example.reservaSala.model.Admin;
+import com.example.reservaSala.model.Sala;
 import com.example.reservaSala.service.AdminService;
+import com.example.reservaSala.service.SalaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -11,6 +14,9 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
+
+    @Autowired
+    private SalaService salaService;
 
     @Autowired
     private AdminService adminService;
@@ -51,9 +57,14 @@ public class AdminController {
     // Página principal do admin (acesso só pra ROLE_ADMIN)
     @GetMapping("/principal")
     public String principal(Model model) {
-        model.addAttribute("usuario", "admin");  // Só pra exibir no HTML se quiser
-        model.addAttribute("activePage", "principal");
-        return "principal";
-    }
+    model.addAttribute("usuario", "admin");  // Exibe o nome do usuário se quiser
+    model.addAttribute("activePage", "principal");
+
+    // Carregar as salas do banco
+    List<Sala> salas = salaService.listarTodas();
+    model.addAttribute("salas", salas);
+
+    return "principal";
+}
 
 }
