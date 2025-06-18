@@ -14,6 +14,14 @@ public class SalaService {
     @Autowired
     private SalaRepository salaRepository;
 
+    public void apagarTodasSalas() {
+        salaRepository.deleteAll();
+    }
+
+    public void salvarTodas(List<Sala> salas) {
+        salaRepository.saveAll(salas);
+    }
+
     // Listar todas as salas
     public List<Sala> listarTodas() {
         return salaRepository.findAll();

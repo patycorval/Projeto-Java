@@ -52,6 +52,7 @@ public class ReservaController {
     @GetMapping("/listagem")
     public String listarReservas(Model model) {
         model.addAttribute("reservas", reservaService.listarTodas());
+        model.addAttribute("activePage", "listagem");
         return "listagem";
     }
 
@@ -81,8 +82,8 @@ public class ReservaController {
     @Secured("ROLE_ADMIN")
     @PostMapping("/reservas/editar/{id}")
     public String atualizarReserva(@PathVariable Long id,
-                                    @ModelAttribute Reserva reservaAtualizada,
-                                    Model model) {
+            @ModelAttribute Reserva reservaAtualizada,
+            Model model) {
         Optional<Reserva> optionalReserva = reservaService.buscarPorId(id);
         if (optionalReserva.isEmpty()) {
             return "redirect:/listagem";
@@ -108,7 +109,8 @@ public class ReservaController {
 
     // Página de contato (acesso livre)
     @GetMapping("/contato")
-    public String paginaContato() {
+    public String paginaContato(Model model) {
+        model.addAttribute("activePage", "contato");
         return "contato";
     }
 }

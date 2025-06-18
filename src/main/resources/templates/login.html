@@ -9,17 +9,17 @@
     <div class="login-admin">
 
         <h1>Login do Admin</h1> 
-<form th:action="@{/admin/login}" method="post">
-    <input type="text" name="username" placeholder="Usuário" />
-    <input type="password" name="password" placeholder="Senha" />
-    <button type="submit">Entrar</button>
-</form>
 
-<div th:if="${param.error}">
-    <p style="color:red;">Usuário ou senha inválidos!</p>
-</div>
-        
-        <p>Não tem cadastro? <a th:href="@{/admin/cadastro}">Cadastre-se aqui</a></p>
+        <form th:action="@{/admin/login}" method="post">
+            <input type="text" name="username" placeholder="Usuário" />
+            <input type="password" name="password" placeholder="Senha" />
+            <button type="submit">Entrar</button>
+        </form>
+
+        <div th:if="${param.error}">
+            <p style="color:red;">Usuário ou senha inválidos!</p>
+        </div>
+
     </div>
 
 </body> 

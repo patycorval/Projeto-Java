@@ -9,13 +9,15 @@
         @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
     </style>
     <title> Salas Reservadas </title>
+    <meta name="_csrf" th:content="${_csrf.token}" />
+<meta name="_csrf_header" th:content="${_csrf.headerName}" />
 </head>
     <body>
         <header>
             <div class="header">
-                <a th:href="@{/}"><img class="logo-fatec" th:src="@{img/logo-fatec-branco.png}" alt="Logo Fatec"> </a>
+                <a th:href="@{/admin/principal}"><img class="logo-fatec" th:src="@{img/logo-fatec-branco.png}" alt="Logo Fatec"> </a>
                     <ul class="links">
-                        <li> <a th:href="@{/}" th:classappend="${activePage == 'principal'} ? 'active' : ''"> Reservar </a></li>
+                        <li> <a th:href="@{/admin/principal}" th:classappend="${activePage == 'principal'} ? 'active' : ''"> Reservar </a></li>
                         <li><a th:href="@{/listagem}" th:classappend="${activePage == 'listagem'} ? 'active' : ''" >Minhas Reservas</a></li>
                         <li><a th:href="@{/contato}" th:classappend="${activePage == 'contato'} ? 'active' : ''" >Contato</a></li>
                     </ul>
@@ -87,13 +89,22 @@
 
         btnConfirm.addEventListener('click', () => {
             if (reservaIdParaExcluir) {
-            // Cria e envia um formulário POST dinamicamente
-            const form = document.createElement('form');
-            form.method = 'post';
-            form.action = '/deletar/' + reservaIdParaExcluir;
+                const form = document.createElement('form');
+                form.method = 'post';
+                form.action = '/deletar/' + reservaIdParaExcluir;
 
-            document.body.appendChild(form);
-            form.submit();
+                // Pega os tokens do meta
+                const csrfToken = document.querySelector('meta[name="_csrf"]').getAttribute('content');
+                const csrfHeader = document.querySelector('meta[name="_csrf_header"]').getAttribute('content');
+
+                const input = document.createElement('input');
+                input.type = 'hidden';
+                input.name = '_csrf';
+                input.value = csrfToken;
+                form.appendChild(input);
+
+                document.body.appendChild(form);
+                form.submit();
             }
         });
 
