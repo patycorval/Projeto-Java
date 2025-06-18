@@ -13,6 +13,7 @@ public class Sala {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private int qtdComputadores;
     private String numero; // NUMERO DA SALA
     private Integer capacidade; // QT ALUNO
     private String localizacao; // ANDAR
@@ -29,13 +30,14 @@ public class Sala {
     }
 
     public Sala(String numero, Integer capacidade, String localizacao, TipoSala tipo, boolean ativa,
-            List<Recurso> recursos) {
+            List<Recurso> recursos, int qtdComputadores) {
         this.numero = numero;
         this.capacidade = capacidade;
         this.localizacao = localizacao;
         this.tipo = tipo;
         this.ativa = ativa;
         this.recursos = recursos;
+        this.qtdComputadores = qtdComputadores;
     }
 
     // Getters e Setters
@@ -93,5 +95,9 @@ public class Sala {
 
     public void setTipo(TipoSala tipo) {
         this.tipo = tipo;
+    }
+
+    public int getQtdComputadores() {
+        return qtdComputadores;
     }
 }
