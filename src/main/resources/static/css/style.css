@@ -578,3 +578,18 @@ h2 .sucesso{
 #btnCancel:hover {
   background-color: #95a5a6; /* cinza claro no hover */
 }
+
+.logout-button {
+    background-color: #ff4d4d;  /* Vermelho claro */
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.logout-button:hover {
+    background-color: #e60000; /* Tom mais escuro no hover */
+}
