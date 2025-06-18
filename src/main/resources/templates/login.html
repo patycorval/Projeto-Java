@@ -3,27 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <title>Login do Administrador</title>
-    <link rel="stylesheet" th:href="@{/css/style.css}"> 
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
-<body>
-    <div class="login-admin">
+<body class="body-login">
+    <!-- <div class="login-admin">
 
-        <h1>Login do Admin</h1> 
+        <h1>Login do Admin</h1>
 
-        <form th:action="@{/admin/login}" method="post">
-            <input type="text" name="username" placeholder="Usuário" />
-            <input type="password" name="password" placeholder="Senha" />
+        <form class="login-form" th:action="@{/admin/login}" method="post">
+
+            <div class="input-group">
+                <input type="text" name="username" id="username" required placeholder=" " />
+                <label for="username">Usuário</label>
+            </div>
+
+            <div class="input-group">
+                <input type="password" name="password" id="password" required placeholder=" " />
+                <label for="password">Senha</label>
+            </div>
+
             <button type="submit">Entrar</button>
         </form>
 
-        <div th:if="${param.error}">
-            <p style="color:red;">Usuário ou senha inválidos!</p>
+        <div th:if="${param.error}" class="error-message">
+            <p>Usuário ou senha inválidos!</p>
         </div>
 
+    </div> -->
+
+    <div class="login-admin">
+    <h1>Login do Admin</h1>
+    <form class="login-form" method="post" th:action="@{/admin/login}">
+        <input type="text" name="username" placeholder="Usuário" required>
+        <input type="password" name="password" placeholder="Senha" required>
+        <button type="submit">Entrar</button>
+    </form>
+    <div th:if="${param.error}" class="error-message">
+        <p>Usuário ou senha inválidos!</p>
     </div>
-
-</body> 
-
-</html> 
+</div>
+</body>
+</html>
 
  
