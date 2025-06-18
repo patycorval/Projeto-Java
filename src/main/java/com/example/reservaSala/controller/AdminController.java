@@ -1,67 +1,87 @@
 package com.example.reservaSala.controller;
 
-import jakarta.servlet.http.HttpSession;
+import com.example.reservaSala.model.Admin;
+import com.example.reservaSala.model.Sala;
+import com.example.reservaSala.service.AdminService;
+import com.example.reservaSala.service.SalaService;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+// import com.example.reservaSala.repositories.SalaRepository;
 
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
 
-    public static final String ATRIBUTO_ADMIN = "isAdmin";
+    @Autowired
+    private AdminService adminService;
 
+    @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
+
+    // Exibir tela de login (o Spring Security que vai processar o login
+    // automaticamente)
     @GetMapping("/login")
     public String exibirLogin() {
         return "login";
     }
 
-    @PostMapping("/login")
-    public String processarLogin(@RequestParam String usuario,
-            @RequestParam String senha,
-            HttpSession session,
-            Model model) {
-        if ("admin".equals(usuario) && "123".equals(senha)) {
-            session.setAttribute(ATRIBUTO_ADMIN, true);
-            return "redirect:/admin/principal";
-        } else {
-            model.addAttribute("erro", "Usuário ou senha inválidos.");
-            return "login";
-        }
-    }
-
+    // Exibir tela de cadastro
     @GetMapping("/cadastro")
     public String exibirCadastro() {
         return "cadastro";
     }
 
+    // Processar cadastro de novo admin
     @PostMapping("/cadastro")
-    public String processarCadastro(@RequestParam String nome,
-            @RequestParam String email,
+    public String processarCadastro(@RequestParam String usuario,
             @RequestParam String senha,
             Model model) {
-        // logica pra salvar o usuario aqui
-        model.addAttribute("mensagem", "Usuário cadastrado com sucesso!");
+        // Criptografar a senha antes de salvar
+        String senhaCriptografada = passwordEncoder.encode(senha);
 
+        Admin novoAdmin = new Admin();
+        novoAdmin.setUsuario(usuario);
+        novoAdmin.setSenha(senhaCriptografada);
+
+        adminService.salvar(novoAdmin);
+
+        model.addAttribute("mensagem", "Admin cadastrado com sucesso!");
         return "redirect:/admin/login";
     }
+
+    @Autowired
+    private SalaService salaService;
 
     @GetMapping("/principal")
-    public String principal(HttpSession session, Model model) {
-        Boolean autenticado = (Boolean) session.getAttribute(ATRIBUTO_ADMIN);
+    public String principal(Model model) {
+        // Busca todas as salas
+        List<Sala> todasSalas = salaService.listarTodas();
 
-        if (Boolean.TRUE.equals(autenticado)) {
-            model.addAttribute("activePage", "principal");
-            model.addAttribute("usuario", "admin");
-            return "principal";
-        } else {
-            return "redirect:/admin/login";
-        }
-    }
+        // Filtra salas do andar 3 (assumindo que o local contém "3")
+        List<Sala> salasAndar3 = todasSalas.stream()
+                .filter(sala -> sala.getLocalizacao() != null && sala.getLocalizacao().contains("3"))
+                .toList();
 
-    @GetMapping("/logout")
-    public String logout(HttpSession session) {
-        session.invalidate();
-        return "redirect:/admin/login";
+        // Filtra salas do andar 5 (assumindo que o local contém "5")
+        List<Sala> salasAndar5 = todasSalas.stream()
+                .filter(sala -> sala.getLocalizacao() != null && sala.getLocalizacao().contains("5"))
+                .toList();
+
+        // Adiciona os dados ao modelo para a view
+        model.addAttribute("salasAndar3", salasAndar3);
+        model.addAttribute("salasAndar5", salasAndar5);
+        model.addAttribute("usuario", "admin");
+
+        // Define a página ativa para o header
+        model.addAttribute("activePage", "principal");
+
+        return "principal";
     }
 }
