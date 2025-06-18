@@ -46,7 +46,7 @@
 
         <h2>Salas e Laboratórios - 5º Andar</h2>
         <section class="andar5">
-            <div class="div-reservar" th:each="sala : ${salasAndar3}">
+            <div class="div-reservar" th:each="sala : ${salasAndar5}">
                 <img th:src="@{/img/sala5.jpeg}" th:alt="'Laboratório ' + ${sala.numero}">
                 <h3 th:text="'Sala ' + ${sala.numero}">Sala</h3>
                 <p th:text="'Capacidade: ' + ${sala.capacidade} + ' alunos'">Capacidade</p>
