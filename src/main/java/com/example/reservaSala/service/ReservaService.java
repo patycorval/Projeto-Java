@@ -60,6 +60,7 @@ public class ReservaService {
         return false;
     }
 
+    // salva a reserva se não tiver conflito
     public Reserva salvar(Reserva reserva) {
         if (temConflito(reserva)) {
             throw new IllegalArgumentException("Já existe uma reserva para essa sala nesse horário.");

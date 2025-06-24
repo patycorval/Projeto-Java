@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 // import com.example.reservaSala.repositories.SalaRepository;
 
 @Controller
-@RequestMapping("/admin")
+@RequestMapping("/admin") // Define um prefixo comum para todas as rotas do controller.
 public class AdminController {
 
     @Autowired
@@ -74,7 +74,7 @@ public class AdminController {
                 .filter(sala -> sala.getLocalizacao() != null && sala.getLocalizacao().contains("5"))
                 .toList();
 
-        // Adiciona os dados ao modelo para a view
+        // passar informações do back-end (Java) para o front-end (HTML com Thymeleaf).
         model.addAttribute("salasAndar3", salasAndar3);
         model.addAttribute("salasAndar5", salasAndar5);
         model.addAttribute("usuario", "admin");

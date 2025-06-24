@@ -8,5 +8,5 @@ import java.util.Optional;
 
 @Repository
 public interface AdminRepository extends JpaRepository<Admin, Long> {
-    Optional<Admin> findByUsuario(String usuario);
+    Optional<Admin> findByUsuario(String usuario); // Busca um Admin pelo nome de usuário e põe no optional
 }

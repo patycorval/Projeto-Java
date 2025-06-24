@@ -5,26 +5,17 @@ import com.example.reservaSala.repositories.AdminRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
+// import java.util.Optional;
 
 @Service
 public class AdminService {
 
-    @Autowired
+    @Autowired // injeta o adminRepository, posso usar os métodos
     private AdminRepository adminRepository;
 
+    // cadastrar admin
     public Admin salvar(Admin admin) {
         return adminRepository.save(admin);
     }
 
-    public Optional<Admin> autenticar(String usuario, String senha) {
-        Optional<Admin> adminOpt = adminRepository.findByUsuario(usuario);
-        if (adminOpt.isPresent()) {
-            Admin admin = adminOpt.get();
-            if (admin.getSenha().equals(senha)) {
-                return Optional.of(admin);
-            }
-        }
-        return Optional.empty();
-    }
 }

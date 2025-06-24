@@ -36,15 +36,15 @@ public class InicializadorSalas implements CommandLineRunner {
 
                                 // 5º andar
                                 new Sala("501", 50, "5º andar", TipoSala.SALA_AULA, true,
-                                                List.of(Recurso.COMPUTADORES, Recurso.PROJETOR), 0),
+                                                List.of(Recurso.COMPUTADORES, Recurso.PROJETOR), 1),
                                 new Sala("502", 40, "5º andar", TipoSala.SALA_AULA, true,
-                                                List.of(Recurso.COMPUTADORES, Recurso.TELEVISOR), 0),
+                                                List.of(Recurso.COMPUTADORES, Recurso.TELEVISOR), 1),
                                 new Sala("503", 45, "5º andar", TipoSala.SALA_AULA, true,
-                                                List.of(Recurso.COMPUTADORES, Recurso.PROJETOR), 0),
+                                                List.of(Recurso.COMPUTADORES, Recurso.PROJETOR), 1),
                                 new Sala("504", 60, "5º andar", TipoSala.SALA_AULA, true,
-                                                List.of(Recurso.COMPUTADORES, Recurso.TELEVISOR), 0),
+                                                List.of(Recurso.COMPUTADORES, Recurso.TELEVISOR), 1),
                                 new Sala("505", 60, "5º andar", TipoSala.SALA_AULA, true,
-                                                List.of(Recurso.COMPUTADORES, Recurso.TELEVISOR), 0));
+                                                List.of(Recurso.COMPUTADORES, Recurso.TELEVISOR), 1));
 
                 salaService.salvarTodas(salas);
                 System.out.println("✅ Salas pré-definidas carregadas com sucesso.");

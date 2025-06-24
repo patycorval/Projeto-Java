@@ -10,6 +10,7 @@ public class Admin {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    // 2 admins n podem ter o msm nome de user e nem ser null
     @Column(nullable = false, unique = true)
     private String usuario;
 
